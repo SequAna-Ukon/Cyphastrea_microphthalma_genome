@@ -45,9 +45,18 @@ smudgeplot.py plot -n 15 -t Cyphastrea_microphthalma -o Cmic_smudg kmerpairs_tex
 
 ### 1. Hybrid approach in one-step
 - SPAdes genome assembler v4.0.0
-
+````bash
+spades.py -1 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_1.fastp.fastq.gz -2 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_2.fastp.fastq.gz --nanopore 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz -o SPAd_Cmic
+````
 ### 2. Hybrid approach in two-step
-flye
-flye --nano-hq  Aip_clean.fq.gz --genome-size 275m --out-dir aip_flye_hq --scaffold
-flye --nano-corr  Aip_clean.fq.gz --genome-size 275m --out-dir aip_flye_corr --scaffold
-flye --nano-raw  Aip_clean.fq.gz --genome-size 275m --out-dir aip_flye_raw --scaffold
+- flye
+````bash
+flye --nano-hq  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 275m --out-dir aip_flye_hq --scaffold
+flye --nano-corr  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 275m --out-dir aip_flye_corr --scaffold
+flye --nano-raw  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 275m --out-dir aip_flye_raw --scaffold
+````
+- Polishing
+
+Medaka/Pilon
+
+## scaffolding
