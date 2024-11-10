@@ -73,7 +73,7 @@ flye --nano-raw  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_
 minimap2 -ax map-ont -t 50 Cmic_flye_corr/assembly.fasta 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz > aligned_reads.sam
 samtools view -@ 50 -Sb aligned_reads.sam | samtools sort -@ 50 -o Cmic.lreads.bam
 samtools index Cmic.lreads.bam
-medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_output -m r941_min_hac_g507
+medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_output -m r941_min_hac_g507 -t 50
 ````
 
 
