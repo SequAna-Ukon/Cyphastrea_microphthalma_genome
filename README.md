@@ -64,9 +64,20 @@ flye --nano-hq  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_Q
 flye --nano-corr  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 250m --threads 50 --out-dir Cmic_flye_corr --scaffold
 flye --nano-raw  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 250m --threads 50 --out-dir Cmic_flye_raw --scaffold
 ````
-- Polishing
+- Cmic_flye_corr shows the best assembly stats, will proceed with it.
 
-Medaka/Pilon
+- Polishing
+ - Medaka
+
+````bash
+minimap2 -ax map-ont -t 50 Cmic_flye_corr/assembly.fasta 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz > aligned_reads.sam
+samtools view -@ 50 -Sb aligned_reads.sam | samtools sort -@ 50 -o Cmic.lreads.bam
+samtools index Cmic.lreads.bam
+medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_output -m r941_min_hac_g507
+````
+
+
+/Pilon
 bowtie2-build  --threads 30 spads_scaf_redu.fasta spads_scaf_redu
 bowtie2 -p 30 -x spads_scaf_redu -1 data/MT1_1.fq.gz -2 data/MT1_2.fq.gz -S aligned_reads.sam
 samtools view -@30 -S -b aligned_reads.sam > aligned_reads.bam
