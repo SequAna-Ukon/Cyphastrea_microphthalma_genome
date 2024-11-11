@@ -55,7 +55,8 @@ spades.py --careful -1 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_1.f
 ````bash
 masurca -i Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_1.fastp.fastq.gz, Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_2.fastp.fastq.gz -r 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz  -t 50 -o assemble_masu.sh
 ````
-
+- got less contigs ~2.5K but shorter assembly 486748023, then will proceed with the second approach.
+  
 ### 2. Hybrid approach in two-step
 
 #### long-reads assembly
@@ -105,3 +106,7 @@ GapCloser -a polished_assembly.fasta -b soap.config -l 150 -o uni_gapclosed.fast
 ````bash
 docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i Cmic_taxpro/analysis_ready_fastqs/*_?.fastq.gz -f reads/spads_scaf.fasta -o Cmic_redu -t 50 --runmerqury
 ````
+
+## Assembly assesment
+
+
