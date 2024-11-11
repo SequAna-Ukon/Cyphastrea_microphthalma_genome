@@ -2,7 +2,7 @@
 Cyphastrea microphthalma  Genome assembly and annotation using ONT and Illumina reads
 - no genome for it yet -- but likely 400-600 Mb
 
-## Clean up/filter: 
+## Clean up/filter
 - trimmomatic for short reads
 
 ````bash
