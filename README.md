@@ -57,17 +57,23 @@ masurca -i Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_1.fastp.fastq.g
 ````
 
 ### 2. Hybrid approach in two-step
-- flye v 2.9.5
+
+#### long-reads assembly
+
+- flye v. 2.9.5
 
 ````bash
 flye --nano-hq  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 250m --threads 50 --out-dir Cmic_flye_hq --scaffold
 flye --nano-corr  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 250m --threads 50 --out-dir Cmic_flye_corr --scaffold
 flye --nano-raw  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz --genome-size 250m --threads 50 --out-dir Cmic_flye_raw --scaffold
 ````
+
 - Cmic_flye_corr shows the best assembly stats, will proceed with it.
 
-- Polishing
- - Medaka
+#### Polishing
+
+
+- Medaka
 
 ````bash
 minimap2 -ax map-ont -t 50 Cmic_flye_corr/assembly.fasta 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz > aligned_reads.sam
@@ -77,16 +83,25 @@ medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_o
 ````
 
 
-/Pilon
-bowtie2-build  --threads 30 spads_scaf_redu.fasta spads_scaf_redu
-bowtie2 -p 30 -x spads_scaf_redu -1 data/MT1_1.fq.gz -2 data/MT1_2.fq.gz -S aligned_reads.sam
-samtools view -@30 -S -b aligned_reads.sam > aligned_reads.bam
-samtools sort -@30 -o sorted_reads.bam aligned_reads.bam
-samtools index sorted_reads.bam
-java -Xmx16G -jar pilon-1.24.jar --genome spads_scaf_redu.fasta --frags sorted_reads.bam --output polished_assembly
+- Pilon
+  
+````bash
+bowtie2-build  --threads 50 medaka_output/consensus.fasta Cmic_meda
+bowtie2 -p 50 -x Cmic_meda -1 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_1.fastp.fastq.gz -2 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_Illu_2.fastp.fastq.gz -S aligned_Sreads.sam
+samtools view -@50 -S -b aligned_Sreads.sam > aligned_Sreads.bam
+samtools sort -@50 -o sorted_Sreads.bam aligned_Sreads.bam
+samtools index sorted_Sreads.bam
+java -Xmx16G -jar pilon-1.24.jar --genome medaka_output/consensus.fasta  --frags sorted_Sreads.bam --output polished_assembly
+````
 
+- Optional,
+
+````bash
 GapCloser -a polished_assembly.fasta -b soap.config -l 150 -o uni_gapclosed.fasta -t 8
-
+````
 
 ## scaffolding
+
+````bash
 docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_?.fq.gz -f reads/spads_scaf.fasta -o spades_redu -t 50 --runmerqury
+````
