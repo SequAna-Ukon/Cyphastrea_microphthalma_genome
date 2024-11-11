@@ -83,7 +83,7 @@ medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_o
 ````
 
 
-- Pilon (using short-reads)
+- Pilon v 1.24 (using short-reads)
   
 ````bash
 bowtie2-build  --threads 50 medaka_output/consensus.fasta Cmic_meda
@@ -91,17 +91,17 @@ bowtie2 -p 50 -x Cmic_meda -1 Cmic_taxpro/analysis_ready_fastqs/Cmic_Illu_Cmic_I
 samtools view -@50 -S -b aligned_Sreads.sam > aligned_Sreads.bam
 samtools sort -@50 -o sorted_Sreads.bam aligned_Sreads.bam
 samtools index sorted_Sreads.bam
-java -Xmx16G -jar pilon-1.24.jar --genome medaka_output/consensus.fasta  --frags sorted_Sreads.bam --output polished_assembly
+java -Xmx50G -jar pilon-1.24.jar --threads 16 --genome medaka_output/consensus.fasta  --frags sorted_Sreads.bam --output polished_assembly
 ````
 
-- Optional,
+- Optional, trying to close gaps using soapdenovo2-gapcloser
 
 ````bash
-GapCloser -a polished_assembly.fasta -b soap.config -l 150 -o uni_gapclosed.fasta -t 8
+GapCloser -a polished_assembly.fasta -b soap.config -l 150 -o uni_gapclosed.fasta -t 50
 ````
 
 ## scaffolding
 
 ````bash
-docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_?.fq.gz -f reads/spads_scaf.fasta -o spades_redu -t 50 --runmerqury
+docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i Cmic_taxpro/analysis_ready_fastqs/*_?.fastq.gz -f reads/spads_scaf.fasta -o Cmic_redu -t 50 --runmerqury
 ````
