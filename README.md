@@ -73,7 +73,7 @@ flye --nano-raw  20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_
 #### Polishing
 
 
-- Medaka
+- Medaka (using long-reads)
 
 ````bash
 minimap2 -ax map-ont -t 50 Cmic_flye_corr/assembly.fasta 20220603_UAE_SA_Cmic_10_34.1_1080_gDNA_host_WGS-ONT_QCVTS273D5_QCVTS287DA_21045LRb240_01_CLEAN.fq.gz > aligned_reads.sam
@@ -83,7 +83,7 @@ medaka_consensus -i Cmic.lreads.bam -d Cmic_flye_corr/assembly.fasta -o medaka_o
 ````
 
 
-- Pilon
+- Pilon (using short-reads)
   
 ````bash
 bowtie2-build  --threads 50 medaka_output/consensus.fasta Cmic_meda
