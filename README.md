@@ -95,18 +95,13 @@ samtools index sorted_Sreads.bam
 java -Xmx50G -jar pilon-1.24.jar --threads 16 --genome medaka_output/consensus.fasta  --frags sorted_Sreads.bam --output polished_assembly
 ````
 
-- Optional, trying to close gaps using soapdenovo2-gapcloser
-
-````bash
-GapCloser -a polished_assembly.fasta -b soap.config -l 150 -o uni_gapclosed.fasta -t 50
-````
 
 ## scaffolding
 
 ````bash
-docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i Cmic_taxpro/analysis_ready_fastqs/*_?.fastq.gz -f reads/spads_scaf.fasta -o Cmic_redu -t 50 --runmerqury
+docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_{1,2}.fastp.fastq.gz -f reads/polished_assembly.fasta -o Cmic_redu -l Cmic_ont_clean.fq.gz --minimap2scaffold  -t 50 --runmerqury
 ````
 
-## Assembly assesment
+## Assembly assessment
 
 
