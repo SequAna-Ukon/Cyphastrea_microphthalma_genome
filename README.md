@@ -104,4 +104,14 @@ docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/red
 
 ## Assembly assessment
 
+Assembly Quality Metrics
+gfastats assembly.fasta
+Visual Inspection
+bandage image assembly.gfa assembly_graph.png
+Assembly Accuracy Metrics
+ busco -i uni_gapclosed.fasta -o busco_output -l bacteria_odb10 -m genome
+Evaluates the completeness and contamination of the assembly.
+
+ BTK
+NCBI submission
 
