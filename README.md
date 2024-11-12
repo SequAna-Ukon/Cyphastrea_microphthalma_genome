@@ -104,6 +104,10 @@ docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/red
 
 ## Assembly assessment
 
+funannotate clean -i aip_flye_raw/assembly.fasta -m 200 -o Aip.clean.fna
+funannotate sort -i Aip.clean.fna -o Aip_final.fasta -b Aip
+
+
 Assembly Quality Metrics
 gfastats assembly.fasta
 Visual Inspection
