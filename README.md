@@ -102,20 +102,31 @@ java -Xmx50G -jar pilon-1.24.jar --threads 16 --genome medaka_output/consensus.f
 docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_{1,2}.fastp.fastq.gz -f reads/polished_assembly.fasta -o Cmic_redu -l Cmic_ont_clean.fq.gz --minimap2scaffold  -t 50 --runmerqury
 ````
 
-## Assembly assessment
+- just some final cleaning 
 
+````bash
 funannotate clean -i aip_flye_raw/assembly.fasta -m 200 -o Aip.clean.fna
 funannotate sort -i Aip.clean.fna -o Aip_final.fasta -b Aip
+````
 
+## Assembly assessment
 
-Assembly Quality Metrics
+- Assembly Quality Metrics
+````bash
 gfastats assembly.fasta
-Visual Inspection
-bandage image assembly.gfa assembly_graph.png
-Assembly Accuracy Metrics
- busco -i uni_gapclosed.fasta -o busco_output -l bacteria_odb10 -m genome
-Evaluates the completeness and contamination of the assembly.
+````
+- Visual Inspection
+  bandage image assembly.gfa assembly_graph.png
 
- BTK
+- Assembly Accuracy Metrics
+
+````bash
+ busco -i uni_gapclosed.fasta -o busco_output -l bacteria_odb10 -m genome
+````
+
+- Evaluates the completeness and contamination of the assembly.
+
+BTK
+
 NCBI submission
 
