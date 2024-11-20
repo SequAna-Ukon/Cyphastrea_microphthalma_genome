@@ -101,33 +101,35 @@ java -Xmx50G -jar pilon-1.24.jar --threads 16 --genome medaka_output/consensus.f
 ````bash
 docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_{1,2}.fastp.fastq.gz -f reads/polished_assembly.fasta -o reads/Cmic_redu -l reads/Cmic_ont_clean.fq.gz --minimap2scaffold  -t 50 --runmerqury
 ````
+- finished with 5841 scaffolds
 
 - just some final cleaning 
 
 ````bash
-funannotate clean -i aip_flye_raw/assembly.fasta -m 200 -o Aip.clean.fna
-funannotate sort -i Aip.clean.fna -o Aip_final.fasta -b Aip
+funannotate clean -i scaffolds.reduced.fa -m 200 -o Cmic.clean.fna
+funannotate sort -i Cmic.clean.fna -o Cmic_final.fasta -b Cmic
 ````
 
 ## Assembly assessment
 
 - Assembly Quality Metrics
 ````bash
-gfastats assembly.fasta
+gfastats Cmic_final.fasta
 ````
-- Visual Inspection
+- Visual Inspection (optional)
   bandage image assembly.gfa assembly_graph.png
 
 - Assembly Accuracy Metrics
 
 ````bash
- busco -i uni_gapclosed.fasta -o busco_output -l bacteria_odb10 -m genome
+busco -i Cmic_final.fasta -o busco_bact -l bacteria_odb10 -m genome
+busco -i Cmic_final.fasta -o busco_meta -l metazoa_odb10 -m genome
+busco -i Cmic_final.fasta -o busco_euk -l eukaryota_odb10 -m genome
 ````
 
 - Evaluates the completeness and contamination of the assembly.
-[0e/7771d3] NFC…RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:SALMON_QUANT (SRX3262391) | 8 of 9
 
-BTK
+- using BTK according to [THIS](https://github.com/blobtoolkit/tutorials/tree/main/futurelearn) manual.
 
-NCBI submission
+## NCBI submission
 
