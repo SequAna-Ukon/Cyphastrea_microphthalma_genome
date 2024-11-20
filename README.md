@@ -99,7 +99,7 @@ java -Xmx50G -jar pilon-1.24.jar --threads 16 --genome medaka_output/consensus.f
 ## scaffolding
 
 ````bash
-docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_{1,2}.fastp.fastq.gz -f reads/polished_assembly.fasta -o Cmic_redu -l Cmic_ont_clean.fq.gz --minimap2scaffold  -t 50 --runmerqury
+docker run -v `pwd`/reads:/reads:rw -it cgenomics/redundans:latest /root/src/redundans/redundans.py -v -i reads/*_{1,2}.fastp.fastq.gz -f reads/polished_assembly.fasta -o reads/Cmic_redu -l reads/Cmic_ont_clean.fq.gz --minimap2scaffold  -t 50 --runmerqury
 ````
 
 - just some final cleaning 
@@ -125,6 +125,7 @@ gfastats assembly.fasta
 ````
 
 - Evaluates the completeness and contamination of the assembly.
+[0e/7771d3] NFC…RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:SALMON_QUANT (SRX3262391) | 8 of 9
 
 BTK
 
