@@ -131,5 +131,10 @@ busco -i Cmic_final.fasta -o busco_euk -l eukaryota_odb10 -m genome
 
 - using BTK according to [THIS](https://github.com/blobtoolkit/tutorials/tree/main/futurelearn) manual.
 
+## Assembling organelle genomes
+
+- Use GetOrganelle according to the [THIS](https://github.com/SequAna-Ukon/SequAna_course2024/wiki/Day-III:-Monday-25.03.2024#assembling-organelle-genomes) manual.
+
+
 ## NCBI submission
 
