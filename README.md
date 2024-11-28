@@ -136,6 +136,8 @@ busco -i Cmic_final.fasta -o busco_euk -l eukaryota_odb10 -m genome
 - using BTK according to [THIS](https://github.com/blobtoolkit/tutorials/tree/main/futurelearn) manual.
 
 
-
 ## NCBI submission
 
+## Identification and masking of DNA repeats
+- using RepeatModeler and EDTA, according to [THIS](https://github.com/SequAna-Ukon/SequAna_course2024/wiki/Day-IV:-Tuesday-26.03.2024#identification-and-masking-of-dna-repeats) manual.
+- the 5 Reference available Merulinidae genomes in NCBI were used to compile the RE database
