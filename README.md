@@ -137,7 +137,17 @@ busco -i Cmic_final.fasta -o busco_euk -l eukaryota_odb10 -m genome
 
 
 ## NCBI submission
-
+- Submission went well, with a validated 5556 scaffolds.
+Total scaffold length: 681387590
+Scaffold N50: 266100
+Largest scaffold: 2834921
+C:93.8%[S:85.2%,D:8.6%],F:1.9%,M:4.3%,n:954
 ## Identification and masking of DNA repeats
-- using RepeatModeler and EDTA, according to [THIS](https://github.com/SequAna-Ukon/SequAna_course2024/wiki/Day-IV:-Tuesday-26.03.2024#identification-and-masking-of-dna-repeats) manual.
+- using RepeatModeler and EDTA, according to [THIS](https://github.com/SequAna-Ukon/SequAna_course/wiki/Day-IV:-Tuesday-25.03.2025#identification-and-masking-of-dna-repeats) manual.
 - the 5 Reference available Merulinidae genomes in NCBI were used to compile the RE database
+
+## Procedures genome annotation
+
+- using Funannotate, according to [THIS](https://github.com/SequAna-Ukon/SequAna_course/wiki/Day-IV:-Tuesday-25.03.2025#gene-prediction-and-functional-annotation-using-funannotate) manual.
+- Very few and only mito. proteins are available for this species then I download the latest Metazoa-specific protein set from [OrthoDB](https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/).
+  
