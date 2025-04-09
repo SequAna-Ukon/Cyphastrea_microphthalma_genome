@@ -150,4 +150,20 @@ C:93.8%[S:85.2%,D:8.6%],F:1.9%,M:4.3%,n:954
 
 - using Funannotate, according to [THIS](https://github.com/SequAna-Ukon/SequAna_course/wiki/Day-IV:-Tuesday-25.03.2025#gene-prediction-and-functional-annotation-using-funannotate) manual.
 - Very few and only mito. proteins are available for this species then I download the latest Metazoa-specific protein set from [OrthoDB](https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/).
-  
+- RNASeq reads are REVERSE stranded according to Rach. note then, the follwong commands has been used:
+
+````bash
+#mapping
+for i in `ls *1P.fq.gz|sed 's/_1P.fq.gz//g'`;do STAR --runThreadN 50 --genomeDir ../Cmic_index/ --readFilesIn ${i}_1P.fq.gz ${i}_2P.fq.gz --readFilesCommand "zcat" --outSAMtype  BAM SortedByCoordinate --outSAMstrandField intronMotif --twopassMode Basic --outFileNamePrefix ${i}_ --limitBAMsortRAM 10000000000; done
+
+#stringtie
+stringtie -p 50 -o Cmic_RNASeqAll.Stringtie.gtf Cmic_RNASeqAll.STAR.bam --rf
+
+#taining 
+funannotate train -i Cmic_V1.fasta -o funannotate_Cmic --species "Cyphastrea microphthalma" -l RNASeq/Cmic_RNASeqAll_1.fq.gz -r RNASeq/Cmic_RNASeqAll_2.fq.gz --stranded RF --cpus 100 --memory 50G
+
+#pridiction
+
+funannotate predict -i Cmic_V1.fasta.masked -s "Cyphastrea microphthalma"  -o funannotate_Cmic --name Cmic --rna_bam Cmic_RNASeqAll.STAR.bam --rna_bam_type RF --stringtie Cmic_RNASeqAll.Stringtie.gtf --protein_evidence Metazoa.faa --transcript_evidence Cmic_RNASeqAll.transcripts.fasta  --organism other --database ../Results/Annotation/software/ --busco_db metazoa --genemark_mode ET --min_protlen 100 --cpus 100
+
+````
