@@ -20,6 +20,7 @@ mamba install -c bioconda busco
 
 gfastats /PATH/TO/Cmic_assembly_flye.fasta
 
-busco -i /PATH/TO/Cmic_assembly_flye.fasta -m geno -l eukaryota_odb10 -c 30 -o busco_euk
+busco -i /PATH/TO/Cmic_assembly_flye.fasta -m geno -l eukaryota_odb10  -o busco_euk
+busco -i /PATH/TO/Cmic_assembly_flye.fasta -m geno -l metazoa_odb10  -o busco_meta
+busco -i /PATH/TO/Cmic_assembly_flye.fasta -m geno -l bacteria_odb10  -o busco_bact
 
-busco -i /PATH/TO/Cmic_assembly_flye.fasta -m geno -l metazoa_odb10 -c 30 -o busco_meta
