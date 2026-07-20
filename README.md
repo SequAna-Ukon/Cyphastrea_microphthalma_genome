@@ -1,4 +1,4 @@
-# Cmic_genome
+# Cyphastrea microphthalma genome
 Cyphastrea microphthalma  Genome assembly and annotation using ONT and Illumina reads
 - no genome for it yet -- but likely 400-600 Mb
 
