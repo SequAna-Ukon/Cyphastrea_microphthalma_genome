@@ -15,9 +15,9 @@ nextflow run GeneForge/main.nf \
 
 # mandatory_Cmic.csv
 name,species,organism,busco_db,busco_db_fun,genome_masked,genome_unmasked,protein_evidence,genemark_dir
-Aip,Exaiptasia diaphana,other,metazoa_odb10,metazoa,/path/to/genome.fasta.masked,/path/to/genome.fasta,/path/to/proteins.fa,/path/to/genemark
+Cmic,Cyphastrea microphthalma,other,metazoa_odb10,metazoa,/path/to/Cmic_V1_new.masked,/path/to/Cmic_V1.fastaa,/path/to/Metazoa.faa,/path/to/genemark
 
 #  optional_Cmic.csv
 
 rnaseq_dir,funanno_DB,eggnog_DB,stranded,nanopore_mrna,pacbio_isoseq,gc_probability,func_tool_dir
-/path/to/rnaseq,/path/to/funannotate_DB,/path/to/eggnog_DB,reverse,/path/to/ONT.fastq.gz,,0.6377,/path/to/tools
+/path/to/RNASeq,/path/to/funannotate_DB,/path/to/eggnog_DB,reverse,,,,/path/to/tools
