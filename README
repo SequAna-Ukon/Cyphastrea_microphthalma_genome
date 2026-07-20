@@ -40,7 +40,7 @@ Repeats were identified using **EDTA** and **RepeatModeler**, then soft-masked w
 
 Structural annotation was performed with **funannotate**, using Oxford Nanopore and Illumina RNA-Seq data as transcript evidence. Additional tools included **tRNAscan-SE**, **STAR**, **BRAKER3**, **AGAT**, **GenomeTools**, and **gffread**.
 
-### 07.functional_annotation.sh
+
 
 Functional annotation was performed using **InterProScan**, **EggNOG-mapper**, and **Phobius**, and integrated with **funannotate**. The final annotation was evaluated using **BUSCO**.
 
