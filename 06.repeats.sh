@@ -6,10 +6,7 @@ conda install -c bioconda vsearch
 
 # ------------------------- REPEAT IDENTIFICATION & MASKING ---------------
 
-assembly="/PATH/TO/aip_flye_raw/assembly.fasta"
-
-# # Identify rRNA # #
-barrnap -q -k euk $assembly --threads 50 --outseq aip_rrna.fasta > aip_rrna.gff 
+assembly="/PATH/TO/Cmic_final.fasta"
 
 # # Pull docker images for RepeatModeler and EDTA # #
 docker pull dfam/tetools:latest
@@ -17,29 +14,24 @@ docker pull quay.io/biocontainers/edta:2.2.2--hdfd78af_1
 
 ############## REPEAT MODELER ###############
 
-docker run -v $PWD:/in -w /in dfam/tetools:latest BuildDatabase -name Aip_genome $assembly
-docker run -v $PWD:/in -w /in dfam/tetools:latest RepeatModeler -database Aip_genome -LTRStruct -threads 40
-
-# The results have been saved to:
-#   /in/
-#     Aip_genome-families.fa  - Consensus sequences for each family identified.
-#     Aip_genome-families.stk - Seed alignments for each family identified.
-#     Aip_genome-rmod.log     - Execution log.  Useful for reproducing results.
+docker run -v $PWD:/in -w /in dfam/tetools:latest BuildDatabase -name Cmic_genome $assembly
+docker run -v $PWD:/in -w /in dfam/tetools:latest RepeatModeler -database Cmic_genome -LTRStruct -threads 40
 
 ################## EDTA #####################
 docker run -v $PWD:/in -w /in quay.io/biocontainers/edta:2.2.2--hdfd78af_1 EDTA.pl --genome $assembly --sensitive 1 --anno 1 -t 32 --overwrite 1 --force 1
 
 ############ COMBINE REPEAT MODELER & EDTA ############### 
 
-cat *-families.fa *.mod.EDTA.TElib.fa > Aip_RE_DB.fa
+cat *-families.fa *.mod.EDTA.TElib.fa > Cmic_RE_DB.fa
 
+# addtional 5 Reference available Merulinidae genomes in NCBI were used to compile the RE database
 # #  Remove duplicates from repeats db # #
-vsearch --derep_fulllength Aip_RE_DB.fa --output Aip_RE_DB_dedup.fasta
+vsearch --derep_fulllength Cmic_RE_DB.fa --output Cmic_RE_DB_dedup.fasta
 
 # # Get Repeat distribution # #
-grep '>' Aip_RE_DB_dedup.fasta | sed -r 's/.+#//' | sed -r 's/\s+.+//' | sort | uniq -c
+grep '>' Cmic_RE_DB_dedup.fasta | sed -r 's/.+#//' | sed -r 's/\s+.+//' | sort | uniq -c
 
 # # Repeats masking using Repeats DB from previous step # #
-docker run -v $PWD:/in -w /in dfam/tetools:latest RepeatMasker $assembly -lib Aip_RE_DB_dedup.fasta -pa 8 -norna -xsmall
+docker run -v $PWD:/in -w /in dfam/tetools:latest RepeatMasker $assembly -lib Cmic_RE_DB_dedup.fasta -pa 8 -norna -xsmall
 
 # The full report of the repeats percentage will be outputted after masking in assembly.fasta.tbl file
