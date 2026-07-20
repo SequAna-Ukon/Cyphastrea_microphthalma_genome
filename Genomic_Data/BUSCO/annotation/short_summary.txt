@@ -1,0 +1,17 @@
+# BUSCO version is: 6.0.0 
+# The lineage dataset is: metazoa_odb10 (Creation date: 2024-01-08, number of genomes: 65, number of BUSCOs: 954)
+# Summarized benchmarking in BUSCO notation for file /home/sharafa/Cmic_genome/ncbi_dataset/data/GCA_059441185.1/protein.faa
+# BUSCO was run in mode: proteins
+
+	***** Results: *****
+
+	C:94.4%[S:85.5%,D:8.9%],F:1.9%,M:3.7%,n:954	   
+	901	Complete BUSCOs (C)			   
+	816	Complete and single-copy BUSCOs (S)	   
+	85	Complete and duplicated BUSCOs (D)	   
+	18	Fragmented BUSCOs (F)			   
+	35	Missing BUSCOs (M)			   
+	954	Total BUSCO groups searched		   
+
+Dependencies and versions:
+	hmmsearch: 3.4

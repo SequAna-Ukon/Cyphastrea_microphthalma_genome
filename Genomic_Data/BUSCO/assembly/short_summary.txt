@@ -1,0 +1,30 @@
+# BUSCO version is: 6.0.0 
+# The lineage dataset is: metazoa_odb10 (Creation date: 2024-01-08, number of genomes: 65, number of BUSCOs: 954)
+# Summarized benchmarking in BUSCO notation for file /home/sharafa/Cmic_genome/ncbi_dataset/data/GCA_059441185.1/GCA_059441185.1_Cmic_V1_genomic.fna
+# BUSCO was run in mode: euk_genome_min
+# Gene predictor used: miniprot
+
+	***** Results: *****
+
+	C:94.1%[S:85.1%,D:9.0%],F:1.6%,M:4.3%,n:954,E:12.5%	   
+	898	Complete BUSCOs (C)	(of which 112 contain internal stop codons)		   
+	812	Complete and single-copy BUSCOs (S)	   
+	86	Complete and duplicated BUSCOs (D)	   
+	15	Fragmented BUSCOs (F)			   
+	41	Missing BUSCOs (M)			   
+	954	Total BUSCO groups searched		   
+
+Assembly Statistics:
+	5554	Number of scaffolds
+	5555	Number of contigs
+	681218052	Total length
+	0.000%	Percent gaps
+	266 kbp	Scaffold N50
+	266 kbp	Contigs N50
+
+
+Dependencies and versions:
+	hmmsearch: 3.4
+	bbtools: None
+	miniprot_index: 0.18-r281
+	miniprot_align: 0.18-r281
