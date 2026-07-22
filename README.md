@@ -33,7 +33,7 @@ The genome was assembled using **Flye** and evaluated with **gfastats** and **BU
 
 Contaminant sequences were identified and removed using **BlobToolKit**.
 
-## 04.assembly_polish.sh
+### 04.assembly_polish.sh
 The assembled and filtered genome was polished using the short reads with Pilon and using the ONT reads with Medaka. The polished assembly was scaffolded using redundans. Finally, the resulted assembly was cleaned, contigs shorter than 200 bp were removed and headers were renamed and sorted using funannotate clean and funannotate sort.
 
 ### 05.mitogenome.sh
@@ -44,7 +44,7 @@ The mitochondrial genome was assembled using **GetOrganelle** and annotated with
 
 Repeats were identified using **EDTA** and **RepeatModeler**, then soft-masked with **RepeatMasker**.
 
-### 07.structural$functional_annotation.sh
+### 07.structural&functional_annotation.sh
 
 Structural annotation was performed with **funannotate**, using Illumina RNA-Seq data as transcript evidence. Additional tools included **tRNAscan-SE**, **STAR**, **BRAKER3**, **AGAT**, **GenomeTools**, and **gffread**. Functional annotation was performed using **InterProScan**, **EggNOG-mapper**, and **Phobius**, and integrated with **funannotate**. The final annotation was evaluated using **BUSCO**. The gene prediction and functional annotation were performed using the fully automated annotation pipeline **GeneForge v2.1**.
 
