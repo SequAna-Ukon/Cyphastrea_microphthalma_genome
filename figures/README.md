@@ -39,6 +39,6 @@ blobtools view --remote./Cmic_BTK/
 
 Summary of the abundance and classification of repetitive elements identified in the *Cyphastrea microphthalma* genome assembly.
 
-- **Repeat annotations:** [`../Genomic_Data/annotation/Cmic_V1_RE.gff.gz`](../Genomic%20Data/annotation/Cmic_V1_RE.gff.gz)
-- **Analysis workflow:** [`../06.repeats.sh`](../06.repeats.sh)
+- **Repeat annotations:** [../Genomic_Data/annotation/Cmic_V1_RE.gff.gz](../Genomic%20Data/annotation/Cmic_V1_RE.gff.gz)
+- **Analysis workflow:** [../06.repeats.sh](../06.repeats.sh)
 - **Software:** RepeatModeler, EDTA, and RepeatMasker.
