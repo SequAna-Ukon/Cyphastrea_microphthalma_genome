@@ -1,0 +1,17 @@
+# BUSCO version is: 6.1.0 
+# The lineage dataset is: anthozoa_odb12 (Creation date: 2026-05-22, number of genomes: 12, number of BUSCOs: 3649)
+# Summarized benchmarking in BUSCO notation for file /home/sharafa/Cmic_genome/ncbi_dataset/data/GCA_059441185.1/Cmic_V1.faa
+# BUSCO was run in mode: proteins
+
+	***** Results: *****
+
+	C:90.8%[S:84.5%,D:6.2%],F:2.6%,M:6.6%,n:3649	   
+	3312	Complete BUSCOs (C)			   
+	3084	Complete and single-copy BUSCOs (S)	   
+	228	Complete and duplicated BUSCOs (D)	   
+	95	Fragmented BUSCOs (F)			   
+	242	Missing BUSCOs (M)			   
+	3649	Total BUSCO groups searched		   
+
+Dependencies and versions:
+	hmmsearch: 3.4

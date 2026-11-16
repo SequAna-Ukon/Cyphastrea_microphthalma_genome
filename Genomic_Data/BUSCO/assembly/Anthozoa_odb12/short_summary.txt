@@ -1,0 +1,30 @@
+# BUSCO version is: 6.1.0 
+# The lineage dataset is: anthozoa_odb12 (Creation date: 2026-05-22, number of genomes: 12, number of BUSCOs: 3649)
+# Summarized benchmarking in BUSCO notation for file /home/sharafa/Cmic_genome/ncbi_dataset/data/GCA_059441185.1/Cmic_V1.fna
+# BUSCO was run in mode: euk_genome_min
+# Gene predictor used: miniprot
+
+	***** Results: *****
+
+	C:94.7%[S:87.7%,D:7.0%],F:2.2%,M:3.1%,n:3649,E:3.7%	   
+	3455	Complete BUSCOs (C)	(of which 129 contain internal stop codons)		   
+	3199	Complete and single-copy BUSCOs (S)	   
+	256	Complete and duplicated BUSCOs (D)	   
+	80	Fragmented BUSCOs (F)			   
+	114	Missing BUSCOs (M)			   
+	3649	Total BUSCO groups searched		   
+
+Assembly Statistics:
+	5554	Number of scaffolds
+	5555	Number of contigs
+	681218052	Total length
+	0.000%	Percent gaps
+	266 kbp	Scaffold N50
+	266 kbp	Contigs N50
+
+
+Dependencies and versions:
+	hmmsearch: 3.4
+	bbtools: None
+	miniprot_index: 0.18-r281
+	miniprot_align: 0.18-r281
